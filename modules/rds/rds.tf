@@ -9,7 +9,7 @@ resource "aws_db_instance" "rds" {
   engine_version         = var.engine_version
   instance_class         = var.instance_type
   identifier             = var.name
-  name                   = var.database
+  name                   = var.database_name
   username               = var.username
   password               = random_string.password.result
   db_subnet_group_name   = aws_db_subnet_group.rds.name

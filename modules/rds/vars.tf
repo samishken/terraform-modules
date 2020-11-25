@@ -5,6 +5,9 @@ variable "name" {
 variable "username" {
   description = "RDS username"
 }
+variable "database_name" {
+  description = "RDS database name"
+}
 variable "at_rest_encryption" {
   description = "enable at rest encryption with KMS"
   default     = true
@@ -16,6 +19,9 @@ variable "storage" {
 variable "storage_type" {
   description = "RDS storage type"
   default     = "gp2"
+}
+variable "instance_type" {
+  description = "RDS instance type"
 }
 variable "engine" {
   description = "RDS engine"
