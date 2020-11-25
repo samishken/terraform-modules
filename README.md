@@ -3,7 +3,8 @@ repository of useful terraform modules
 
 # Usage
 
-## ECS Cluster
+
+## ECS Cluster (EC2)
 ```
 module "my-ecs" {
   source         = "github.com/in4it/terraform-modules//modules/ecs-cluster"
@@ -17,6 +18,15 @@ module "my-ecs" {
   LOG_GROUP      = "my-log-group"
   AWS_ACCOUNT_ID = "1234567890"
   AWS_REGION     = "us-east-1"
+}
+```
+
+## ECS Cluster (Fargate)
+```
+module "my-ecs" {
+  source         = "github.com/in4it/terraform-modules//modules/fargate-cluster"
+  cluster_name   = "my-ecs"
+  log_group      = "my-log-group"
 }
 ```
 
