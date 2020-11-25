@@ -13,7 +13,7 @@ resource "aws_db_instance" "rds" {
   name                   = var.database_name
   username               = var.username
   password               = random_string.password.result
-  db_subnet_group_name   = aws_db_subnet_group.rds.name
+  db_subnet_group_name   = var.subnet_group != "" ? var.subnet_group : aws_db_subnet_group.rds[0].name
   parameter_group_name   = aws_db_parameter_group.rds.name
   multi_az               = var.multi_az
   vpc_security_group_ids = [aws_security_group.rds.id]
@@ -32,6 +32,7 @@ resource "aws_db_instance" "rds" {
 }
 
 resource "aws_db_subnet_group" "rds" {
+  count = var.subnet_group != "" ? 0 : 1
   name        = var.name
   description = "${var.name} subnet"
   subnet_ids  = var.subnet_ids

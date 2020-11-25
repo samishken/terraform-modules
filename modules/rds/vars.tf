@@ -39,6 +39,10 @@ variable "subnet_ids" {
   description = "subnet ids to launch RDS in"
   default     = []
 }
+variable "subnet_group" {
+  description = "subnet group to launch RDS in"
+  default     = []
+}
 variable "ingress_security_groups" {
   description = "Security groups to allow"
   default     = []
