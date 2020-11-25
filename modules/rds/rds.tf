@@ -22,8 +22,8 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot                 = false
   final_snapshot_identifier           = "${var.name}-final-snapshot"
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
-  storage_encrypted                   = var.encryption ? true : false
-  kms_key_id                          = var.encryption ? aws_kms_alias.rds[0].target_key_arn : ""
+  storage_encrypted                   = var.at_rest_encryption ? true : false
+  kms_key_id                          = var.at_rest_encryption ? aws_kms_alias.rds[0].target_key_arn : ""
 
   tags = {
     Name = var.name
