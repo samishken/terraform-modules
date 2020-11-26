@@ -1,23 +1,23 @@
 [
   {
-    "name": "${APPLICATION_NAME}",
-    "image": "${ECR_URL}:${APPLICATION_VERSION}",
-    "cpu": ${CPU_RESERVATION},
-    "memoryReservation": ${MEMORY_RESERVATION},
+    "name": "${application_name}",
+    "image": "${ecr_url}:${application_version}",
+    "cpu": ${cpu_reservation},
+    "memoryreservation": ${memory_reservation},
     "essential": true,
-    "mountPoints": [],
-    "portMappings" : [
+    "mountpoints": [],
+    "portmappings" : [
       {
-        "containerPort": ${APPLICATION_PORT},
-        "hostPort": 0
+        "containerport": ${application_port},
+        "hostport": 0
       }
     ],
-    "logConfiguration": {
-          "logDriver": "awslogs",
+    "logconfiguration": {
+          "logdriver": "awslogs",
           "options": {
-              "awslogs-group": "${LOG_GROUP}",
-              "awslogs-region": "${AWS_REGION}",
-              "awslogs-stream-prefix": "${APPLICATION_NAME}"
+              "awslogs-group": "${log_group}",
+              "awslogs-region": "${aws_region}",
+              "awslogs-stream-prefix": "${application_name}"
           }
     }
   }

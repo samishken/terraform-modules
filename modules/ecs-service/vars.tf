@@ -1,56 +1,66 @@
-variable "VPC_ID" {
+variable "vpc_id" {
 }
 
-variable "AWS_REGION" {
+variable "aws_region" {
 }
 
-variable "APPLICATION_NAME" {
+variable "launch_type" {
 }
 
-variable "APPLICATION_PORT" {
+variable "application_name" {
 }
 
-variable "APPLICATION_VERSION" {
+variable "application_port" {
 }
 
-variable "CLUSTER_ARN" {
+variable "application_version" {
 }
 
-variable "SERVICE_ROLE_ARN" {
+variable "cluster_arn" {
 }
 
-variable "DESIRED_COUNT" {
+variable "service_role_arn" {
 }
 
-variable "DEPLOYMENT_MINIMUM_HEALTHY_PERCENT" {
+variable "desired_count" {
+}
+
+variable "deployment_minimum_healthy_percent" {
   default = 100
 }
 
-variable "DEPLOYMENT_MAXIMUM_PERCENT" {
+variable "deployment_maximum_percent" {
   default = 200
 }
 
-variable "DEREGISTRATION_DELAY" {
+variable "deregistration_delay" {
   default = 30
 }
 
-variable "HEALTHCHECK_MATCHER" {
+variable "healthcheck_matcher" {
   default = "200"
 }
 
-variable "CPU_RESERVATION" {
+variable "cpu_reservation" {
 }
 
-variable "MEMORY_RESERVATION" {
+variable "memory_reservation" {
 }
 
-variable "LOG_GROUP" {
+variable "log_group" {
 }
 
-variable "TASK_ROLE_ARN" {
+variable "task_role_arn" {
   default = ""
 }
 
-variable "ALB_ARN" {
+variable "alb_arn" {
 }
 
+variable "fargate_service_security_groups" {
+  default     = []
+}
+
+variable "fargate_service_subnetids" {
+  default     = []
+}

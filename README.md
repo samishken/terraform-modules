@@ -34,19 +34,22 @@ module "my-ecs" {
 ```
 module "my-service" {
   source              = "github.com/in4it/terraform-modules//modules/ecs-service"
-  VPC_ID              = "vpc-id"
-  APPLICATION_NAME    = "my-service"
-  APPLICATION_PORT    = "8080"
-  APPLICATION_VERSION = "latest"
-  CLUSTER_ARN         = "${module.my-ecs.cluster_arn}"
-  SERVICE_ROLE_ARN    = "${module.my-ecs.service_role_arn}"
-  AWS_REGION          = "us-east-1"
-  HEALTHCHECK_MATCHER = "200"
-  CPU_RESERVATION     = "1024"
-  MEMORY_RESERVATION  = "1024"
-  LOG_GROUP           = "my-log-group"
-  DESIRED_COUNT       = 2
-  ALB_ARN             = "${module.my-alb.alb_arn}"
+  vpc_id              = "vpc-id"
+  application_name    = "my-service"
+  application_port    = "8080"
+  application_version = "latest"
+  cluster_arn         = "${module.my-ecs.cluster_arn}"
+  service_role_arn    = "${module.my-ecs.service_role_arn}"
+  aws_region          = "us-east-1"
+  healthcheck_matcher = "200"
+  cpu_reservation     = "1024"
+  memory_reservation  = "1024"
+  log_group           = "my-log-group"
+  desired_count       = 2
+  alb_arn             = "${module.my-alb.alb_arn}"
+  launch_type         = "FARGATE"
+  security_groups     = [""]
+  subnets             = [""]
 }
 ```
 
