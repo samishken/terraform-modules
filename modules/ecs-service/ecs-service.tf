@@ -47,6 +47,8 @@ resource "aws_ecs_task_definition" "ecs-service-taskdef" {
   execution_role_arn       = var.execution_role_arn
   requires_compatibilities = [var.launch_type]
   network_mode             = var.launch_type == "FARGATE" ? "awsvpc" : "bridge"
+  cpu                      = var.launch_type == "FARGATE" ? var.cpu_reservation : null
+  memory                   = var.launch_type == "FARGATE" ? var.memory_reservation : null
 }
 
 #
