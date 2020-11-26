@@ -80,11 +80,11 @@ variable "secrets" {
 }
 
 variable "ingress_rules" {
-  default     = []
+  default = []
   type = list(object({
-    from_port  = number
-    to_port = number
-    protocol  = string
+    from_port       = number
+    to_port         = number
+    protocol        = string
     security_groups = list(string)
   }))
 }
