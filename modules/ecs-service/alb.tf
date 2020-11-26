@@ -1,7 +1,7 @@
 #
 # target
 #
-resource "aws_alb_target_group" "ecs-service" {
+resource "aws_lb_target_group" "ecs-service" {
   name = "${var.application_name}-${substr(
     md5(
       format(
@@ -18,6 +18,7 @@ resource "aws_alb_target_group" "ecs-service" {
   protocol             = "HTTP"
   vpc_id               = var.vpc_id
   deregistration_delay = var.deregistration_delay
+  target_type = var.launch_type == "FARGATE" ? "ip" : "instance"
 
   health_check {
     healthy_threshold   = 3
