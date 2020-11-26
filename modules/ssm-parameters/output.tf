@@ -1,6 +1,6 @@
 output "kms-key-id" {
-  value = aws_kms_key.ssm-parameters.key_id
+  value = length(aws_kms_key.ssm-parameters) > 0 ? aws_kms_key.ssm-parameters[0].key_id : null
 }
 output "kms-key-arn" {
-  value = aws_kms_key.ssm-parameters.arn
+  value = length(aws_kms_key.ssm-parameters) > 0 ? aws_kms_key.ssm-parameters[0].arn : null
 }
