@@ -9,7 +9,7 @@ resource "aws_kms_key" "ssm-parameters" {
 }
 resource "aws_kms_alias" "ssm-parameters" {
   count         = var.at_rest_encryption ? 1 : 0
-  name          = "alias/ssm-paramstore-${var.prefix_nospecialchars}"
+  name          = "alias/ssm-paramstore-${local.prefix_nospecialchars}"
   target_key_id = aws_kms_key.ssm-parameters[0].key_id
 }
 
