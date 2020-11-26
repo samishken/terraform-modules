@@ -12,7 +12,7 @@
         "hostport": ${host_port}
       }
     ],
-    ${secrets},
+    "secrets": ${secrets},
     "logconfiguration": {
           "logdriver": "awslogs",
           "options": {
