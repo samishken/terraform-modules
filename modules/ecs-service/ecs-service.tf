@@ -46,6 +46,7 @@ resource "aws_ecs_task_definition" "ecs-service-taskdef" {
   family                   = var.application_name
   container_definitions    = templatefile("${path.module}/ecs-service.json.tpl", local.template-vars)
   task_role_arn            = var.task_role_arn
+  execution_role_arn       = var.execution_role_arn
   requires_compatibilities = [var.launch_type]
   network_mode             = var.launch_type == "FARGATE" ? "awsvpc" : "bridge"
 }

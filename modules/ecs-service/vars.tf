@@ -54,6 +54,10 @@ variable "task_role_arn" {
   default = ""
 }
 
+variable "execution_role_arn" {
+  default = ""
+}
+
 variable "alb_arn" {
 }
 
