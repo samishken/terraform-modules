@@ -13,8 +13,7 @@ resource "aws_ecr_repository" "ecs-service" {
 # get latest active revision
 #
 data "aws_ecs_task_definition" "ecs-service" {
-  task_definition = aws_ecs_task_definition.ecs-service-taskdef.family
-  depends_on      = [aws_ecs_task_definition.ecs-service-taskdef]
+  task_definition = aws_ecs_task_definition.ecs-service-taskdef.arn != "" ? aws_ecs_task_definition.ecs-service-taskdef.family : ""
 }
 
 #
@@ -32,7 +31,10 @@ locals {
     cpu_reservation     = var.cpu_reservation
     memory_reservation  = var.memory_reservation
     log_group           = var.log_group
-    secrets             = var.secrets
+
+    secrets = jsonencode({
+      "secrets" : [for secret in var.secrets : secret],
+    }),
   }
 }
 

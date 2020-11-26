@@ -12,9 +12,7 @@
         "hostport": ${host_port}
       }
     ],
-    ${jsonencode({
-      "secrets": [for secret in secrets : secret ],
-    })}
+    ${secrets},
     "logconfiguration": {
           "logdriver": "awslogs",
           "options": {
