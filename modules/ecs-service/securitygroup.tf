@@ -1,5 +1,5 @@
 resource "aws_security_group" "ecs-service" {
-  name        = "ecs-${ar.application_name}"
+  name        = var.application_name
   vpc_id      = var.vpc_id
   description = var.application_name
 
