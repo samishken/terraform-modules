@@ -14,7 +14,7 @@ resource "aws_lb" "lb" {
 # certificate
 data "aws_acm_certificate" "certificate" {
   domain   = var.domain
-  statuses = ["issued", "pending_validation"]
+  statuses = ["ISSUED", "PENDING_VALIDATION"]
 }
 
 # lb listener (https)
