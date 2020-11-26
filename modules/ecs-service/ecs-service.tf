@@ -18,21 +18,21 @@ data "aws_ecs_task_definition" "ecs-service" {
 }
 
 #
-# task definition template
+# task definition variables
 #
 
-data "template_file" "ecs-service" {
-  template = file("${path.module}/ecs-service.json")
-
-  vars = {
+locals {
+  template-vars = {
     application_name    = var.application_name
     application_port    = var.application_port
+    host_port           = var.launch_type == "FARGATE" ? var.application_port : 0
     application_version = var.application_version
     ecr_url             = aws_ecr_repository.ecs-service.repository_url
     aws_region          = var.aws_region
     cpu_reservation     = var.cpu_reservation
     memory_reservation  = var.memory_reservation
     log_group           = var.log_group
+    secrets             = var.secrets
   }
 }
 
@@ -41,11 +41,11 @@ data "template_file" "ecs-service" {
 #
 
 resource "aws_ecs_task_definition" "ecs-service-taskdef" {
-  family                = var.application_name
-  container_definitions = data.template_file.ecs-service.rendered
-  task_role_arn         = var.task_role_arn
+  family                   = var.application_name
+  container_definitions    = templatefile("${path.module}/ecs-service.json.tpl", local.template-vars)
+  task_role_arn            = var.task_role_arn
   requires_compatibilities = [var.launch_type]
-  network_mode = var.launch_type == "FARGATE" ? "awsvpc" : "bridge"
+  network_mode             = var.launch_type == "FARGATE" ? "awsvpc" : "bridge"
 }
 
 #

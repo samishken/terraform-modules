@@ -9,9 +9,12 @@
     "portmappings" : [
       {
         "containerport": ${application_port},
-        "hostport": 0
+        "hostport": ${host_port}
       }
     ],
+    ${jsonencode({
+      "secrets": [for secret in secrets : secret ],
+    })}
     "logconfiguration": {
           "logdriver": "awslogs",
           "options": {
