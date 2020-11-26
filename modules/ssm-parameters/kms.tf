@@ -1,6 +1,9 @@
+locals {
+  prefix_nospecialchars = replace(var.prefix, "/", "")
+}
 resource "aws_kms_key" "ssm-parameters" {
   count                   = var.at_rest_encryption ? 1 : 0
-  description             = "SSM Paramstore key ${var.prefix}"
+  description             = "SSM Paramstore key ${local.prefix_nospecialchars}"
   deletion_window_in_days = 30
   enable_key_rotation     = true
 }
