@@ -32,9 +32,7 @@ locals {
     memory_reservation  = var.memory_reservation
     log_group           = var.log_group
 
-    secrets = jsonencode({
-      "secrets" : [for secret in var.secrets : secret],
-    }),
+    secrets = jsonencode([for secret in var.secrets : secret])
   }
 }
 
