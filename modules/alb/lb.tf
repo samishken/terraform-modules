@@ -6,7 +6,7 @@ resource "aws_lb" "lb" {
   name            = var.lb_name
   internal        = var.internal
   security_groups = [aws_security_group.lb.id]
-  subnets         = split(",", var.vpc_subnets)
+  subnets         = var.vpc_subnets
 
   enable_deletion_protection = false
 }
