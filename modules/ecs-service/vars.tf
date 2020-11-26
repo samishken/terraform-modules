@@ -79,16 +79,12 @@ variable "secrets" {
   }))
 }
 
-variable "container_cpu" {
-}
-
-variable "container_memory" {
-}
-
 variable "ingress_rules" {
   default     = []
   type = list(object({
     from_port  = number
     to_port = number
+    protocol  = string
+    security_groups = list()
   }))
 }
