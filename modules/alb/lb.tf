@@ -21,7 +21,7 @@ data "aws_acm_certificate" "certificate" {
 resource "aws_lb_listener" "lb-https" {
   load_balancer_arn = aws_lb.lb.arn
   port              = "443"
-  protocol          = "https"
+  protocol          = "HTTPS"
   ssl_policy        = "elbsecuritypolicy-2016-08"
   certificate_arn   = data.aws_acm_certificate.certificate.arn
 
@@ -35,7 +35,7 @@ resource "aws_lb_listener" "lb-https" {
 resource "aws_lb_listener" "lb-http" {
   load_balancer_arn = aws_lb.lb.arn
   port              = "80"
-  protocol          = "http"
+  protocol          = "HTTP"
 
   default_action {
     target_group_arn = var.default_target_arn
