@@ -20,3 +20,6 @@ variable "ecs_sg" {
   default = ""
 }
 
+variable "ssl" {
+  default = true
+}

@@ -19,6 +19,7 @@ data "aws_acm_certificate" "certificate" {
 
 # lb listener (https)
 resource "aws_lb_listener" "lb-https" {
+  count = var.ssl ? 0 : 1
   load_balancer_arn = aws_lb.lb.arn
   port              = "443"
   protocol          = "HTTPS"
