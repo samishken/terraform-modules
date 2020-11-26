@@ -1,44 +1,44 @@
 #
-# ECS ALB
+# ecs lb
 #
-# alb main definition
-resource "aws_alb" "alb" {
-  name            = var.ALB_NAME
-  internal        = var.INTERNAL
-  security_groups = [aws_security_group.alb.id]
-  subnets         = split(",", var.VPC_SUBNETS)
+# lb main definition
+resource "aws_lb" "lb" {
+  name            = var.lb_name
+  internal        = var.internal
+  security_groups = [aws_security_group.lb.id]
+  subnets         = split(",", var.vpc_subnets)
 
   enable_deletion_protection = false
 }
 
 # certificate
 data "aws_acm_certificate" "certificate" {
-  domain   = var.DOMAIN
-  statuses = ["ISSUED", "PENDING_VALIDATION"]
+  domain   = var.domain
+  statuses = ["issued", "pending_validation"]
 }
 
-# alb listener (https)
-resource "aws_alb_listener" "alb-https" {
-  load_balancer_arn = aws_alb.alb.arn
+# lb listener (https)
+resource "aws_lb_listener" "lb-https" {
+  load_balancer_arn = aws_lb.lb.arn
   port              = "443"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  protocol          = "https"
+  ssl_policy        = "elbsecuritypolicy-2016-08"
   certificate_arn   = data.aws_acm_certificate.certificate.arn
 
   default_action {
-    target_group_arn = var.DEFAULT_TARGET_ARN
+    target_group_arn = var.default_target_arn
     type             = "forward"
   }
 }
 
-# alb listener (http)
-resource "aws_alb_listener" "alb-http" {
-  load_balancer_arn = aws_alb.alb.arn
+# lb listener (http)
+resource "aws_lb_listener" "lb-http" {
+  load_balancer_arn = aws_lb.lb.arn
   port              = "80"
-  protocol          = "HTTP"
+  protocol          = "http"
 
   default_action {
-    target_group_arn = var.DEFAULT_TARGET_ARN
+    target_group_arn = var.default_target_arn
     type             = "forward"
   }
 }
