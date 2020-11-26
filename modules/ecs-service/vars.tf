@@ -85,6 +85,6 @@ variable "ingress_rules" {
     from_port  = number
     to_port = number
     protocol  = string
-    security_groups = list()
+    security_groups = list(string)
   }))
 }
