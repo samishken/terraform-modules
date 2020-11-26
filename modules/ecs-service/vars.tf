@@ -20,6 +20,7 @@ variable "cluster_arn" {
 }
 
 variable "service_role_arn" {
+  default = ""
 }
 
 variable "desired_count" {
