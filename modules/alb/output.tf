@@ -13,6 +13,7 @@ output "zone_id" {
 output "http_listener_arn" {
   value = aws_lb_listener.lb-http.arn
 }
+
 output "https_listener_arn" {
-  value = aws_lb_listener.lb-https[0].arn
+  value = length(aws_lb_listener.lb-https) > 0 ? aws_lb_listener.lb-https[0].arn : null
 }
