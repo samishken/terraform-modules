@@ -69,7 +69,7 @@ resource "aws_ecs_service" "ecs-service" {
   launch_type                        = var.launch_type
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.ecs-service.id
+    target_group_arn = aws_lb_target_group.ecs-service.id
     container_name   = var.application_name
     container_port   = var.application_port
   }
