@@ -14,6 +14,7 @@ variable "domain" {
 }
 
 variable "default_target_arn" {
+  default = ""
 }
 
 variable "ecs_sg" {
